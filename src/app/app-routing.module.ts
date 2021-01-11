@@ -7,7 +7,7 @@ import { MainComponent } from '@app/main/main.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'users',
     pathMatch: 'full',
   }, 
   {
