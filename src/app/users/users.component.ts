@@ -68,7 +68,7 @@ export class UsersComponent implements OnInit {
             Validators.required,
             Validators.minLength(4),
             Validators.maxLength(4),
-            Validators.pattern(/[1-9]{4}/)
+            Validators.pattern(/[1-9]{1}[0-9]{3}/)
           ],
         ],
         country: ['', Validators.required],
