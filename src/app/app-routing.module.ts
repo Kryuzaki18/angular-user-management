@@ -1,8 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+// COMPONENTS
+import { MainComponent } from '@app/main/main.component';
 
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  }, 
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('@app/main/main.module').then(m => m.MainModule)
+      }
+    ]
+  },
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

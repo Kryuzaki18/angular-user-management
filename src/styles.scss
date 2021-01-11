@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: "Roboto-Light";
+    src: url(assets/fonts/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url(assets/fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url(assets/fonts/Roboto-Bold.ttf);
+}
+
+.roboto-light {
+    font-family: "Roboto-Light";
+}
+
+.roboto-medium {
+    font-family: "Roboto-Medium";
+}
+
+.roboto-regular {
+    font-family: "Roboto-Regular";
+}
+
+.roboto-bold {
+    font-family: "Roboto-Bold";
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.t-left {
+    text-align: left;
+}
+
+.t-center {
+    text-align: center;
+}
+
+.t-right {
+    text-align: right;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto-Regular";
+}
+
+.header-wrapper {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.main-card {
+    margin-top: 10px;
+    .t-action-buttons {
+        margin: 0 2px;
+    }
+}
+
+.add-button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 17px;
+    z-index: 6;
+}

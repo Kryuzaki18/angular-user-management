@@ -1,0 +1,234 @@
+<p-dialog
+  header="{{ isAdd ? 'Add User' : 'Edit User' }}"
+  [(visible)]="isShow"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10"
+  [draggable]="true"
+  [resizable]="false"
+>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="modal-form">
+    <div class="p-grid">
+      <p-divider align="left" type="dashed" class="p-col-12 p-md-12">
+        <div class="p-d-inline-flex p-ai-center">
+          <i class="pi pi-info-circle p-mr-2"></i>
+          <b>Basic Info</b>
+        </div>
+      </p-divider>
+
+      <div class="p-col-12 p-md-6">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          pInputText
+          formControlName="firstName"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          pInputText
+          formControlName="lastName"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <label for="age">Age</label>
+        <input
+          id="age"
+          type="text"
+          pInputText
+          formControlName="age"
+          class="p-md-12 p-inputtext-lg"
+          placeholder="18"
+          maxLength="3"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          pInputText
+          formControlName="email"
+          placeholder="sample@email.com"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <label for="mobileNumber">Mobile Number</label>
+        <p-inputMask
+          id="mobileNumber"
+          mask="(09) 99-999-9999"
+          formControlName="mobileNumber"
+          placeholder="(09) XX-XXX-XXXX"
+          class="p-md-12 p-inputtext-lg"
+          size="15"
+        ></p-inputMask>
+      </div>
+
+      <p-divider align="left" type="dashed" class="p-col-12 p-md-12">
+        <div class="p-d-inline-flex p-ai-center">
+          <i class="pi pi-info-circle p-mr-2"></i>
+          <b>Mailing Address</b>
+        </div>
+      </p-divider>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="street">Street</label>
+        <input
+          id="street"
+          type="text"
+          pInputText
+          formControlName="street"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="barangay">Barangay</label>
+        <input
+          id="barangay"
+          type="text"
+          pInputText
+          formControlName="barangay"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="city">City</label>
+        <input
+          id="city"
+          type="text"
+          pInputText
+          formControlName="city"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="province">Province</label>
+        <input
+          id="province"
+          type="text"
+          pInputText
+          formControlName="province"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="zipCode">Zip Code</label>
+        <input
+          id="zipCode"
+          type="text"
+          pInputText
+          formControlName="zipCode"
+          class="p-md-12 p-inputtext-lg"
+          maxLength="4"
+        />
+      </div>
+
+      <div class="p-col-12 p-md-4" formGroupName="mailingAddress">
+        <label for="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          pInputText
+          formControlName="country"
+          class="p-md-12 p-inputtext-lg"
+        />
+      </div>
+    </div>
+
+    <div class="modal-action-buttons t-center">
+      <p-button
+        icon="pi pi-times"
+        (click)="isShow = false"
+        label="Cancel"
+        color="danger"
+        styleClass="p-button-text"
+      ></p-button>
+      <p-button
+        icon="pi pi-check"
+        type="submit"
+        label="Save"
+        styleClass="p-button-text"
+        [disabled]="!userForm.valid"
+      ></p-button>
+    </div>
+  </form>
+</p-dialog>
+
+<p-button
+  styleClass="add-button"
+  label="Add"
+  icon="pi pi-plus"
+  (click)="addUser()"
+></p-button>
+
+<p-card header="Users" styleClass="main-card">
+  <p-table
+    [value]="users"
+    [paginator]="users.length"
+    [rows]="10"
+    [showCurrentPageReport]="users.length"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mobile Number</th>
+        <th>Email</th>
+        <th>Mailing Address</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user?.firstName + " " + user?.lastName }}</td>
+        <td>{{ user?.age }}</td>
+        <td>{{ user?.mobileNumber }}</td>
+        <td>{{ user?.email }}</td>
+        <td>{{ formatMailingAddress(user.mailingAddress) }}</td>
+        <td>
+          <button
+            (click)="editUser(user.id)"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-primary p-button-outlined t-action-buttons"
+          ></button>
+          <button
+            (click)="deleteUser(user.id)"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-primary p-button-outlined t-action-buttons"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <tr *ngIf="!users.length">
+        <td colSpan="6" class="text-no-data">
+          <i class="pi pi-thumbs-up"></i>
+          No Data.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
