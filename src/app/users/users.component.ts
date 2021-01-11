@@ -124,7 +124,6 @@ export class UsersComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.userForm);
     const {
       firstName,
       lastName,
