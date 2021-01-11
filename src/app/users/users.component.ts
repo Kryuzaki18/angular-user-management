@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
       ],
       mobileNumber: [
         Validators.required,
-        // [Validators.required, Validators.pattern(/[(]09[)][/\s/g][0-9]{2}[-]?[0-9]{3}[-]?[0-9]{4}/)],
+        [Validators.required, Validators.pattern(/[(]09[)][/\s/g][0-9]{2}[-]?[0-9]{3}[-]?[0-9]{4}/)],
         // Validators.maxLength(16),
       ],
       email: [
