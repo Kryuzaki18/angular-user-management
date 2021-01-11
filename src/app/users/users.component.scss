@@ -6,3 +6,11 @@
     background-color: #fff !important;
     text-align: center !important;
 }
+
+label {
+    &:after{
+        content: '*';
+        color: rgb(168, 11, 11);
+        margin-left: 3px;
+    }
+}
